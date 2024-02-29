@@ -63,7 +63,7 @@ while True:
             print(match)
             url = "http://k8n.cn/student/punchs/course/" + ClassID + "/" + match
             payload = {
-                'id': ClassID,
+                'id': match,
                 'lat': X,
                 'lng': Y,
                 'acc': ACC,
