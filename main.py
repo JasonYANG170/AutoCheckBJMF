@@ -89,7 +89,7 @@ while True:
                     requests.get(url)  # 不使用请注释
                     continue  # 返回到查找进行中的签到循环
                 else:
-                    print("未找到 <h1> 标签")
+                    print("未找到 <h1> 标签，可能存在错误")
             else:
                 print("请求失败，状态码:", response.status_code)
     else:
