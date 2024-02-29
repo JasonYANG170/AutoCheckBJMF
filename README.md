@@ -32,7 +32,7 @@
     - pip install requests  
     - pip install beautifulsoup4
 
-3.主机用户可直接点击main.py运行即可  
+3.主机用户可直接点击main.py运行即可（更建议使用Pycharm或其他Python编译器运行）  
 *本地服务器用户及GitHub Actions用户请自行修改main.py注释
 
 2.填写以下变量  
