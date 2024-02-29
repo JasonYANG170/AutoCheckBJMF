@@ -25,6 +25,9 @@
 
 如您使用其他以时间结算的加速器请向我提出issues
 ## 使用教程
+#### 普通用户
+1.在releases下载exe程序后点击运行即可
+#### 服务器用户
 1.下载ZIP或Clone到本地。 
 
 2.自行安装python，pip，然后在控制台输入以下命令安装python依赖包  
@@ -32,9 +35,8 @@
     - pip install requests  
     - pip install beautifulsoup4
 
-3.主机用户可直接点击main.py运行即可（更建议使用Pycharm或其他Python编译器运行）  
-*本地服务器用户及GitHub Actions用户请自行修改main.py注释
-
+3.请自行修改main.py注释
+## 配置信息
 2.填写以下变量  
 
     - ClassID(填写班级ID)  
@@ -42,7 +44,7 @@
     - Y(填写经度)
     - ACC(未知参数，可能是高度)  
     - SearchTime(查询时长，建议>60s)  
-    - MyCookie(填写你的Cookie)
+    - MyCookie(填写你的Cookie，下面有教程)
     - token(填写PUSHPLUS的Token，不使用推送请在main.py中注释88及89行代码)
    
 3.程序将执行**无限循环**用于检索签到任务，如需**停止请手动关闭** 
