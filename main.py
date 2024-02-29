@@ -54,10 +54,14 @@ while True:
     # 创建 Beautiful Soup 对象解析 HTML
     soup = BeautifulSoup(response.text, 'html.parser')
 
-    # 使用正则表达式从 HTML 文本中提取所有 punch_gps() 中的数字
+ # 使用正则表达式从 HTML 文本中提取所有 punch_gps() 中的数字
     pattern = re.compile(r'punch_gps\((\d+)\)')
     matches = pattern.findall(response.text)
-
+    print("找到GPS定位签到:", matches)
+    pattern2 = re.compile(r'punchcard_(\d+)')
+    matches2 = pattern2.findall(response.text)
+    print("找到扫码签到:", matches2)
+    matches.extend(matches2)
     if matches:
         for match in matches:
             print(match)
