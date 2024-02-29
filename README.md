@@ -13,6 +13,11 @@
 
 </div>
 
+## 支持的签到模式  
+- [x] 二维码签到
+- [x] GPS签到
+- [x] 密码签到 
+
 ## 功能
 - [x] 定时检测GPS签到任务
 - [x] 24小时无人值守
@@ -22,7 +27,7 @@
 ## 使用教程
 1.下载ZIP或Clone到本地。 
 
-2.安装python，pip及python依赖  
+2.自行安装python，pip，然后在控制台输入以下命令安装python依赖包  
 
     - pip install requests  
     - pip install beautifulsoup4
