@@ -9,7 +9,7 @@ ClassID = input("请输入班级ID：")
 X = input("请输入纬度：")
 Y = input("请输入经度：")
 ACC = input("请输入海拔：")
-SearchTime = input("请输入检索时长（建议>60s）：")
+SearchTime =  int(input("请输入检索时长，建议>60s："))
 MyCookie = input("请输入你的Cookie：")
 token = input("请输入pushplus密钥：")
 
