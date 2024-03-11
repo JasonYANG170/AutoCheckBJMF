@@ -49,7 +49,10 @@
    
 3.程序将执行**无限循环**用于检索签到任务，如需**停止请手动关闭** 
 ## 如何获取Cookie和班级ID
-需要使用抓包软件（Fiddler,HttpCanary,抓包精灵）从微信抓取Cookie
+需要使用抓包软件（Fiddler,HttpCanary,抓包精灵）从微信抓取Cookie  
+
+使用Fiddler抓取演示：
+![屏幕截图 2024-03-11 120501](https://github.com/JasonYANG170/AutoCheckBJMF/assets/39414350/c695c890-de8d-4a4f-aee4-a892b5ab7c29)
 
 ## 已知问题
 #### 1.使用浏览器获取的Cookie不稳定会失效，建议用户从微信抓取Cookie
