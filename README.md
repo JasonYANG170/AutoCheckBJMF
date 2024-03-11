@@ -42,7 +42,7 @@
     - ClassID(填写班级ID)  
     - X(填写纬度)  
     - Y(填写经度)
-    - ACC(未知参数，可能是高度)  
+    - ACC(未知参数，可能是海拔)  
     - SearchTime(查询时长，建议>60s)  
     - MyCookie(填写你的Cookie，下面有教程)
     - token(填写PUSHPLUS的Token，不使用推送请在main.py中注释88及89行代码)
