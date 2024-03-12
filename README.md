@@ -28,7 +28,7 @@
 #### 普通用户
 1.在releases下载exe程序后点击运行即可
 #### 服务器用户
-1.下载ZIP或Clone到本地。 
+1.下载ZIP或Clone到本地。  
 2.自行安装python，pip，然后在控制台输入以下命令安装python依赖包  
 
     - pip install requests  
