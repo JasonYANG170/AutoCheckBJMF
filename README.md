@@ -59,7 +59,9 @@
 
 
 使用Fiddler抓取演示：
+1中结尾的98969为班级ID，2中的即是我们要用到的Cookie
 ![屏幕截图 2024-03-11 120501](https://github.com/JasonYANG170/AutoCheckBJMF/assets/39414350/c695c890-de8d-4a4f-aee4-a892b5ab7c29)
+
 
 ## 已知问题
 #### 1.使用浏览器获取的Cookie不稳定会失效，建议用户从微信抓取Cookie
