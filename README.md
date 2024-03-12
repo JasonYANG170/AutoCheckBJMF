@@ -1,5 +1,5 @@
 <div align="center">
-    <h1>AutoCheckBJMF 班级魔方自动GPS签到</h1>
+    <h1>AutoCheckBJMF 班级魔方自动签到</h1>
     <img src="https://img.shields.io/github/license/JasonYANG170/AutoCheckBJMF?label=License&style=for-the-badge">
     <img src="https://img.shields.io/github/commit-activity/w/JasonYANG170/AutoCheckBJMF?style=for-the-badge">
 <img src="https://img.shields.io/github/languages/count/JasonYANG170/AutoCheckBJMF?logo=python&style=for-the-badge">
