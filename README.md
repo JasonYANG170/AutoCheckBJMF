@@ -36,6 +36,12 @@
     - pip install beautifulsoup4
 
 3.请自行修改main.py注释
+#### Github Action用户
+1.已经提供了yml配置文件  
+
+2.修改main.py  
+
+2.在仓库Setting～Secrets中添加配置信息即可  
 ## 配置信息
 2.填写以下变量  
 
