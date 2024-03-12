@@ -51,6 +51,13 @@
 ## 如何获取Cookie和班级ID
 需要使用抓包软件（Fiddler,HttpCanary,抓包精灵）从微信抓取Cookie  
 
+1.下载抓包软件  
+
+2.打开抓包软件开启抓包  
+
+3.从微信电脑版进入班级魔方签到界面  
+
+
 使用Fiddler抓取演示：
 ![屏幕截图 2024-03-11 120501](https://github.com/JasonYANG170/AutoCheckBJMF/assets/39414350/c695c890-de8d-4a4f-aee4-a892b5ab7c29)
 
