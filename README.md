@@ -58,7 +58,7 @@
 3.从微信电脑版进入班级魔方签到界面  
 
 
-使用Fiddler抓取演示：
+使用Fiddler抓取演示：  
 1中结尾的98969为班级ID，2中的即是我们要用到的Cookie
 ![屏幕截图 2024-03-11 120501](https://github.com/JasonYANG170/AutoCheckBJMF/assets/39414350/c695c890-de8d-4a4f-aee4-a892b5ab7c29)
 
