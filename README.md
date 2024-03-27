@@ -64,9 +64,15 @@
 
 
 使用Fiddler抓取演示：  
-1中结尾的98969为班级ID，  
-2中的即是我们要用到的Cookie.  
-![屏幕截图 2024-03-11 120501](https://github.com/JasonYANG170/AutoCheckBJMF/assets/39414350/c695c890-de8d-4a4f-aee4-a892b5ab7c29)
+1，打开Fiddler  
+2.进入图中1的签到界面  
+3.找到图中2的链接，双击进入  
+4.点击图中3的数据  
+5.图中4的Cookie：后的部分就是你的Cookie  
+6.图中5的数字就是你的班级ID  
+![Screenshot 2024-03-28 024226](https://github.com/JasonYANG170/AutoCheckBJMF/assets/39414350/6453fc70-f8a9-4336-8778-21a642424732)
+
+
 
 
 ## 已知问题
