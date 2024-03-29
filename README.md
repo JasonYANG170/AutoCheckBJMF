@@ -51,7 +51,7 @@
     - X(填写纬度，格式x.x.x)  
     - Y(填写经度，格式y.y.y)
     - ACC(未知参数，可能是海拔)  
-    - SearchTime(查询时长，建议>60s)  
+    - SearchTime(检索间隔，建议>＝60s)  
     - MyCookie(填写你的Cookie，下面有教程)
     - token(填写PUSHPLUS的Token，不使用请留空)
    
