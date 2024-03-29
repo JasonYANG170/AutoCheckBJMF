@@ -48,12 +48,12 @@
 2.填写以下变量  
 
     - ClassID(填写班级ID)  
-    - X(填写纬度)  
-    - Y(填写经度)
+    - X(填写纬度，格式x.x.x)  
+    - Y(填写经度，格式y.y.y)
     - ACC(未知参数，可能是海拔)  
     - SearchTime(查询时长，建议>60s)  
     - MyCookie(填写你的Cookie，下面有教程)
-    - token(填写PUSHPLUS的Token，不使用推送请在main.py中注释88及89行代码)
+    - token(填写PUSHPLUS的Token，不使用请留空)
    
 3.程序将执行**无限循环**用于检索签到任务，如需**停止请手动关闭** 
 ## 如何获取Cookie和班级ID
