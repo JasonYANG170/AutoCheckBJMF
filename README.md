@@ -31,6 +31,8 @@
 ## 使用教程
 #### 普通用户
 1.在releases下载AutoCheckBJMF.zip后解压运行AutoCheckBJMF.exe即可
+#### 自动化用户
+1.下载源码，按需求修改注释
 ## 如何获取Cookie和班级ID
 需要使用抓包软件（Fiddler,HttpCanary,抓包精灵）从微信抓取Cookie  
 
