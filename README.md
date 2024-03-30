@@ -36,14 +36,15 @@
 1.打开解压后的data.json
 2.填写以下变量  
 
+    - 默认值123，使用默认值时会要求在程序中填写
     - class(填写班级ID，教程中有)  
     - lat(填写纬度，格式x.x.x)  
     - lng(填写经度，格式y.y.y)
     - acc(未知参数，可能是海拔)  
     - time(检索间隔，建议>＝60s)  
-    - cookie(填写你的Cookie，下面有教程)
-    - scheduletime(填写你的Cookie，下面有教程)
-    - pushplus(填写PUSHPLUS的Token，不使用默认)
+    - cookie(填写你的Cookie，建议每天更新一次，下面有教程)
+    - scheduletime(填写定时开启时间，不使用请默认)
+    - pushplus(填写PUSHPLUS的Token，不使用请默认)
    
 3.程序将执行**无限循环**用于检索签到任务，如需**停止请手动关闭** 
 ## 如何获取Cookie和班级ID
