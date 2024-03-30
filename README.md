@@ -32,7 +32,7 @@
 #### 普通用户
 1.在releases下载AutoCheckBJMF.zip后解压即可
 ## 配置信息
-1.打开解压后的data.json
+1.打开解压后的data.json  
 2.填写以下变量  
 
     - 默认值123，使用默认值时会要求在程序中填写
