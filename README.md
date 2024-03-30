@@ -31,29 +31,19 @@
 如遇问题，请向我提出issues
 ## 使用教程
 #### 普通用户
-1.在releases下载exe程序后点击运行即可
-#### 服务器用户
-1.下载ZIP或Clone到本地。  
-2.自行安装python，pip，然后在控制台输入以下命令安装python依赖包  
-
-    - pip install requests  
-    - pip install beautifulsoup4
-
-3.请自行修改main.py注释
-#### Github Action用户
-1.已经提供了yml配置文件  
-2.修改main.py  
-2.在仓库Setting～Secrets中添加配置信息即可  
+1.在releases下载AutoCheckBJMF.zip后解压即可
 ## 配置信息
+1.打开解压后的data.json
 2.填写以下变量  
 
-    - ClassID(填写班级ID，教程中有)  
-    - X(填写纬度，格式x.x.x)  
-    - Y(填写经度，格式y.y.y)
-    - ACC(未知参数，可能是海拔)  
-    - SearchTime(检索间隔，建议>＝60s)  
-    - MyCookie(填写你的Cookie，下面有教程)
-    - token(填写PUSHPLUS的Token，不使用请留空)
+    - class(填写班级ID，教程中有)  
+    - lat(填写纬度，格式x.x.x)  
+    - lng(填写经度，格式y.y.y)
+    - acc(未知参数，可能是海拔)  
+    - time(检索间隔，建议>＝60s)  
+    - cookie(填写你的Cookie，下面有教程)
+    - scheduletime(填写你的Cookie，下面有教程)
+    - pushplus(填写PUSHPLUS的Token，不使用默认)
    
 3.程序将执行**无限循环**用于检索签到任务，如需**停止请手动关闭** 
 ## 如何获取Cookie和班级ID
