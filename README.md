@@ -26,10 +26,7 @@
 - ✅ 导入json配置文件  
 
 如遇问题，请向我提出issues
-#### 普通用户
-1.在releases下载AutoCheckBJMF.zip后解压运行AutoCheckBJMF.exe即可
-#### 自动化用户
-1.下载源码，按需求修改注释
+
 ## 使用教程
 维基Wiki https://github.com/JasonYANG170/AutoCheckBJMF/wiki
 
