@@ -31,16 +31,12 @@
 1.在releases下载AutoCheckBJMF.zip后解压运行AutoCheckBJMF.exe即可
 #### 自动化用户
 1.下载源码，按需求修改注释
-## 如何获取Cookie和班级ID
+## 如何获取Cookie、班级ID、GPS坐标
+#### 获取GPS坐标
+使用腾讯坐标拾取API：  
+https://lbs.qq.com/getPoint/
+#### 获取Cookie、班级ID
 需要使用抓包软件（Fiddler,HttpCanary,抓包精灵）从微信抓取Cookie  
-
-1.下载抓包软件  
-
-2.打开抓包软件开启抓包  
-
-3.从微信电脑版进入班级魔方签到界面  
-
-
 使用Fiddler抓取演示：  
 1.打开Fiddler  
 2.从微信进入图中1的签到界面  
@@ -58,8 +54,8 @@
 
     - 默认值123，使用默认值时会要求在程序中填写
     - class(填写班级ID，教程中有)  
-    - lat(填写纬度，格式x.x.x)  
-    - lng(填写经度，格式y.y.y)
+    - lat(填写纬度)  
+    - lng(填写经度)
     - acc(未知参数，可能是海拔)  
     - time(检索间隔，建议>＝60s)  
     - pushplus(填写PUSHPLUS的Token，不使用请默认)
