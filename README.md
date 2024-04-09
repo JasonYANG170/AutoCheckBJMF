@@ -27,6 +27,7 @@
 
 如遇问题，请向我提出issues
 ## 使用教程
+维基Wiki https://github.com/JasonYANG170/AutoCheckBJMF/wiki
 #### 普通用户
 1.在releases下载AutoCheckBJMF.zip后解压运行AutoCheckBJMF.exe即可
 #### 自动化用户
