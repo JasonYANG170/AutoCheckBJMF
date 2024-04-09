@@ -6,9 +6,10 @@
 	<br>
     	<a href="https://discord.com/invite/az3ceRmgVe"><img alt="Discord" src="https://img.shields.io/discord/978108215499816980?style=social&logo=discord&label=echosec"></a>
   <br>
-
+<img src="https://github.com/JasonYANG170/AutoCheckBJMF/assets/39414350/7400a5d2-1031-4e31-b189-4cbfa2df51e6">
+	
 这是一项基于Python语言的班级魔方GPS自动签到Script
-  
+
 <br>
 
 </div>
