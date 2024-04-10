@@ -45,7 +45,7 @@ with open('data.json', 'r') as file:
     if (json_data['cookie'] == "123"):
         MyCookie = input("请输入你的Cookie：")
     else:
-        scheduletime = json_data['cookie']  # int(input("请输入检索时长，建议>60s："))
+        MyCookie = json_data['cookie']  # int(input("请输入检索时长，建议>60s："))
     print("----------配置定时任务(可选)----------")
     print("格式为00:00,不设置定时请留空")
     print("提示：请使用英文符号“:”不要使用中文符号“：”")
@@ -124,7 +124,7 @@ def job():
         if matches:
             for match in matches:
                 print(match)
-                url = "http://k8n.cn/student/punchs/course/" + ClassID + "/" + match
+                url1 = "http://k8n.cn/student/punchs/course/" + ClassID + "/" + match
                 payload = {
                     'id': match,
                     'lat': X,
@@ -134,7 +134,7 @@ def job():
                     'gps_addr': ''#未知，抓取时该函数为空
                 }
 
-                response = requests.post(url, headers=headers, data=payload)
+                response = requests.post(url1, headers=headers, data=payload)
 
                 if response.status_code == 200:
                     print("请求成功")
