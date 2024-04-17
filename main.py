@@ -109,7 +109,8 @@ with open('data.json', 'r') as file:
     print("通知token:" + token)
     print("---------------------")
 # 输出用户输入的内容
-print("程序已执行")
+print("一切就绪，程序开始执行")
+
 
 
 # GitHub Actions自动任务
