@@ -81,21 +81,22 @@ with open('data.json', 'r') as file:
     print("----------配置通知(可选)----------")
     if (json_data['pushplus'] == "123"):
         token = input("请输入pushplus推送密钥,不需要请留空：")
-
+        if(token!=""):
         # 1. 读取JSON文件
         # JSON文件路径
-        file_name = "data.json"
-        file_path = os.path.join(current_directory, file_name)
-        with open(file_path, "r") as file:
-            data = json.load(file)
+            file_name = "data.json"
+            file_path = os.path.join(current_directory, file_name)
+            with open(file_path, "r") as file:
+                data = json.load(file)
 
         # 2. 修改数据
-        data["pushplus"] = token
+            data["pushplus"] = token
         # 3. 写回JSON文件
-        with open(file_path, "w") as file:
-            json.dump(data, file, indent=4)
+            with open(file_path, "w") as file:
+                json.dump(data, file, indent=4)
 
-        print("数据已保存到" + current_directory + "下的data.json中。")
+            print("数据已保存到" + current_directory + "下的data.json中。")
+
     else:
         token = json_data['pushplus']  # input("请输入pushplus密钥：")
     print("----------信息----------")
