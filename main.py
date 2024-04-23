@@ -38,7 +38,7 @@ with open('data.json', 'r') as file:
         ACC = json_data['acc']  # input("请输入海拔：")
     if (json_data['time'] == 123):
         SearchTime = int(input("请输入检索间隔，建议>=60s："))
-        input("配置完成，您的信息将写入json文件，下次使用将直接从json文件导入")
+        print("配置完成，您的信息将写入json文件，下次使用将直接从json文件导入")
 
         # 1. 读取JSON文件
         # JSON文件路径
