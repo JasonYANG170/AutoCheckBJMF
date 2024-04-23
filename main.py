@@ -36,6 +36,26 @@ with open('data.json', 'r') as file:
         ACC = input("请输入海拔：")
     else:
         ACC = json_data['acc']  # input("请输入海拔：")
+    print("----------配置Cookie----------")
+    print("请通过查看教程抓包获取Cookie")
+    print("教程：https://github.com/JasonYANG170/AutoCheckBJMF/wiki/")
+    print("Tip:90%的失败由Cookie变更导致")
+    if (json_data['cookie'] == "123"):
+        MyCookie = input("请输入你的Cookie：")
+    else:
+        MyCookie = json_data['cookie']  # int(input("请输入检索时长，建议>60s："))
+
+    # 给定的长字符串
+
+    # 使用正则表达式提取目标字符串
+    pattern = r'remember_student_59ba36addc2b2f9401580f014c7f58ea4e30989d=[^;]+'
+    result = re.search(pattern, MyCookie)
+
+    if result:
+        extracted_string = result.group(0)
+        print(extracted_string)
+    else:
+        print("未找到匹配的字符串,检查Cookie是否错误")
     if (json_data['time'] == 123):
         SearchTime = int(input("请输入检索间隔，建议>=60s："))
         print("配置完成，您的信息将写入json文件，下次使用将直接从json文件导入")
@@ -53,7 +73,7 @@ with open('data.json', 'r') as file:
         data["lng"] = Y
         data["acc"] = ACC
         data["time"] = SearchTime
-
+        data["cookie"] = MyCookie
 
         # 3. 写回JSON文件
         with open(file_path, "w") as file:
@@ -63,27 +83,7 @@ with open('data.json', 'r') as file:
 
     else:
         SearchTime = json_data['time']  # int(input("请输入检索时长，建议>60s："))
-    print("----------配置Cookie----------")
-    print("请通过查看教程抓包获取Cookie")
-    print("教程：https://github.com/JasonYANG170/AutoCheckBJMF/wiki/")
-    print("Tip:90%的失败由Cookie变更导致")
-    if (json_data['cookie'] == "123"):
-        MyCookie = input("请输入你的Cookie：")
-    else:
-        MyCookie = json_data['cookie']  # int(input("请输入检索时长，建议>60s："))
 
-
-    # 给定的长字符串
-
-    # 使用正则表达式提取目标字符串
-    pattern = r'remember_student_59ba36addc2b2f9401580f014c7f58ea4e30989d=[^;]+'
-    result = re.search(pattern, MyCookie)
-
-    if result:
-        extracted_string = result.group(0)
-        print(extracted_string)
-    else:
-        print("未找到匹配的字符串,检查Cookie是否错误")
     print("----------配置定时任务(可选)----------")
     print("格式为00:00,不设置定时请留空")
     print("Tip：请注意以上格式并使用英文符号“:”不要使用中文符号“：”")
