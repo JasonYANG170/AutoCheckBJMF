@@ -71,6 +71,19 @@ with open('data.json', 'r') as file:
         MyCookie = input("请输入你的Cookie：")
     else:
         MyCookie = json_data['cookie']  # int(input("请输入检索时长，建议>60s："))
+
+
+    # 给定的长字符串
+
+    # 使用正则表达式提取目标字符串
+    pattern = r'remember_student_59ba36addc2b2f9401580f014c7f58ea4e30989d=[^;]+'
+    result = re.search(pattern, MyCookie)
+
+    if result:
+        extracted_string = result.group(0)
+        print(extracted_string)
+    else:
+        print("未找到匹配的字符串,检查Cookie是否错误")
     print("----------配置定时任务(可选)----------")
     print("格式为00:00,不设置定时请留空")
     print("Tip：请注意以上格式并使用英文符号“:”不要使用中文符号“：”")
@@ -146,7 +159,7 @@ def job():
         'Referer': 'http://k8n.cn/student/course/' + ClassID,
         'Accept-Encoding': 'gzip, deflate',
         'Accept-Language': 'zh-CN,zh-SG;q=0.9,zh;q=0.8,en-SG;q=0.7,en-US;q=0.6,en;q=0.5',
-        'Cookie': MyCookie
+        'Cookie': extracted_string
     }
 
     while True:
