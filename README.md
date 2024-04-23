@@ -27,9 +27,9 @@
 - ✅ 支持msi安装包一键式安装
 - ✅ 支持自定义经纬度完成定位签到
 - ✅ 支持循环检测GPS及扫码签到任务
-- ✅ 支持自动导入data.json配置文件  
+- ✅ 支持自动导入data.json配置文件（感谢[Halogly](https://github.com/Halogly)）
 - ✅ 支持自动保存信息到data.json文件
-- ✅ 支持连续签到，无需重复抓取Cookie值
+- ✅ 支持连续签到，无需重复抓取Cookie值（感谢[Moeus](https://github.com/Moeus)）
 
 
 如遇问题，请向我提出issues
