@@ -14,7 +14,6 @@
 
 </div>
 
-## 如果喜欢请为我点个Star⭐️
 
 ## 支持平台
 **Windows、Mac、Linux**
