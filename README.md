@@ -20,7 +20,7 @@
 ## 支持的签到模式  
 - ✅ 二维码签到    （验证通过）
 - ✅ GPS签到      （验证通过）
-- ✅ GPS+拍照签到 （验证通过）（感谢[weandy](https://github.com/weandy)）
+- ✅ GPS+拍照签到 （验证通过）
 - 🚧 密码签到      
 
 ## 功能
@@ -29,9 +29,9 @@
 - ✅ 支持msi安装包一键式安装
 - ✅ 支持自定义经纬度完成定位签到
 - ✅ 支持循环检测GPS及扫码签到任务
-- ✅ 支持自动导入data.json配置文件 （感谢[Halogly](https://github.com/Halogly)）
+- ✅ 支持自动导入data.json配置文件 
 - ✅ 支持自动保存信息到data.json文件
-- ✅ 支持连续签到，无需重复抓取Cookie值 （感谢[Moeus](https://github.com/Moeus)）
+- ✅ 支持连续签到，无需重复抓取Cookie值 
 
 
 如遇问题，请向我提出issues
