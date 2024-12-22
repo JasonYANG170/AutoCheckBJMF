@@ -9,11 +9,37 @@ import json
 import schedule
 from datetime import datetime
 
+# 定义默认的 JSON 数据
+default_data = {
+    "class": "123",
+    "lat": "123",
+    "lng": "123",
+    "acc": "123",
+    "time": 123,
+    "cookie": "123",
+    "scheduletime": "",
+    "pushplus": "123",
+    "debug": False
+}
+
+# 获取当前目录
+current_directory = os.getcwd()
+file_name = "data.json"
+file_path = os.path.join(current_directory, file_name)
+
+# 检查文件是否存在
+if not os.path.exists(file_path):
+    # 文件不存在，创建并写入默认数据
+    with open(file_path, "w") as file:
+        json.dump(default_data, file, indent=4)
+    print(f"文件 {file_name} 不存在，已创建并填充默认数据。")
+
 # 读取外部 JSON 文件中的数据
 with open('data.json', 'r') as file:
     json_data = json.load(file)
+    debug = json_data['debug']
     # 普通用户
-    current_directory = os.getcwd()
+    # current_directory = os.getcwd()
     print("----------提醒----------")
     print("原项目地址：https://github.com/JasonYANG170/AutoCheckBJMF")
     print("本项目地址：https://github.com/Yaklo/AutoCheckBJMF")
@@ -151,6 +177,8 @@ print("一切就绪，程序开始执行")
 
 # 随机经纬，用于定位偏移
 def modify_decimal_part(num):
+    num = float(num)
+    print(num)
     # 将浮点数转换为字符串
     num_str = f"{num:.8f}"  # 确保有足够的小数位数
     # 找到小数点的位置
@@ -181,7 +209,10 @@ def job():
     for jobs in range(0,3):
         nojobs = 0
         # 多用户检测签到
-        for onlyCookie in MyCookie:
+        for uid in range(0,len(MyCookie)):
+
+            onlyCookie = MyCookie[uid]
+            print("★★★★★ 用户UID：%d 开始签到 ★★★★★"%(uid+1))
 
             # 使用正则表达式提取目标字符串
             pattern = r'remember_student_59ba36addc2b2f9401580f014c7f58ea4e30989d=[^;]+'
@@ -238,10 +269,18 @@ def job():
 
                         # 解析响应的 HTML 内容
                         soup_response = BeautifulSoup(response.text, 'html.parser')
-                        h1_tag = soup_response.find('h1')
+                        # h1_tag = soup_response.find('h1')
+                        div_tag = soup_response.find('div', id='title')
 
-                        if h1_tag:
-                            h1_text = h1_tag.text
+                        if debug:
+                            print("★☆★")
+                            print(soup_response)
+                            print("===")
+                            print(div_tag)
+                            print("★☆★")
+
+                        if div_tag:
+                            h1_text = div_tag.text
                             print(h1_text)
                             # encoding:utf-8
                             if token != "" and h1_text== "签到成功":
@@ -262,7 +301,9 @@ def job():
             jobs-=1 #检测到存在签到失败，延长重试规则
             print("本次签到存在异常，异常次数%d，已自动延长重试次数"%nojobs)
         time.sleep(300) #等待5分钟后进行重复签到，避免签到失败
+    print("☆本次签到结束，等待设定的时间%s到达☆"%scheduletime)
 
+# job()
 if (scheduletime != ""):
     print("等待设定时间" + scheduletime + "到达")
     # 设置定时任务，在每天的早上8点触发
@@ -270,6 +311,6 @@ if (scheduletime != ""):
 
     while True:
         schedule.run_pending()
-        time.sleep(30)
+        time.sleep(10)
 else:
     job()
