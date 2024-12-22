@@ -1,3 +1,5 @@
+import random
+
 import requests
 import re
 import time
@@ -13,7 +15,8 @@ with open('data.json', 'r') as file:
     # 普通用户
     current_directory = os.getcwd()
     print("----------提醒----------")
-    print("项目地址：https://github.com/JasonYANG170/AutoCheckBJMF")
+    print("原项目地址：https://github.com/JasonYANG170/AutoCheckBJMF")
+    print("本项目地址：https://github.com/Yaklo/AutoCheckBJMF")
     print("请查看教程以获取Cookie和班级ID")
     print("data.json文件位置：", current_directory)
     print("----------配置信息(必填)----------")
@@ -22,7 +25,7 @@ with open('data.json', 'r') as file:
         ClassID = input("请输入班级ID：")
     else:
         ClassID = json_data['class']
-    print("输入的经纬度格式为x.x")
+    print("输入的经纬度格式为x.x，请输入至少8位小数，不满8位用0替补")
     print("腾讯坐标拾取工具：https://lbs.qq.com/getPoint/")
     if (json_data['lat'] == "123"):
         X = input("请输入纬度：")
@@ -41,23 +44,21 @@ with open('data.json', 'r') as file:
     print("教程：https://github.com/JasonYANG170/AutoCheckBJMF/wiki/")
     print("Tip:90%的失败由Cookie变更导致")
     if (json_data['cookie'] == "123"):
-        MyCookie = input("请输入你的Cookie：")
+        cookies = []
+        print("请输入你的Cookie，输入空行结束：")
+        while True:
+            cookie = input("Cookie: ")
+            if not cookie:
+                break
+            cookies.append(cookie)
+        MyCookie = cookies
     else:
         MyCookie = json_data['cookie']  # int(input("请输入检索时长，建议>60s："))
 
     # 给定的长字符串
 
-    # 使用正则表达式提取目标字符串
-    pattern = r'remember_student_59ba36addc2b2f9401580f014c7f58ea4e30989d=[^;]+'
-    result = re.search(pattern, MyCookie)
-
-    if result:
-        extracted_string = result.group(0)
-        print(extracted_string)
-    else:
-        print("未找到匹配的字符串,检查Cookie是否错误")
     if (json_data['time'] == 123):
-        SearchTime = int(input("请输入检索间隔，建议>=60s："))
+        # SearchTime = int(input("请输入检索间隔，建议>=60s："))
         print("配置完成，您的信息将写入json文件，下次使用将直接从json文件导入")
 
         # 1. 读取JSON文件
@@ -72,7 +73,8 @@ with open('data.json', 'r') as file:
         data["lat"] = X
         data["lng"] = Y
         data["acc"] = ACC
-        data["time"] = SearchTime
+        # data["time"] = SearchTime
+        data["time"] = 223
         data["cookie"] = MyCookie
 
         # 3. 写回JSON文件
@@ -118,7 +120,7 @@ with open('data.json', 'r') as file:
     print("纬度:" + X)
     print("海拔:" + ACC)
     print("检索间隔:" + str(SearchTime))
-    print("Cookie值:" + MyCookie)
+    print("Cookie数量:" + str(len(MyCookie)))
     print("定时:" + scheduletime)
     print("通知token:" + token)
     print("---------------------")
@@ -146,78 +148,120 @@ print("一切就绪，程序开始执行")
 #MyCookie = ''
 #token = ''  #在pushplus网站中可以找到
 #scheduletime =''
+
+# 随机经纬，用于定位偏移
+def modify_decimal_part(num):
+    # 将浮点数转换为字符串
+    num_str = f"{num:.8f}"  # 确保有足够的小数位数
+    # 找到小数点的位置
+    decimal_index = num_str.find('.')
+    # 提取小数点后4到6位
+    decimal_part = num_str[decimal_index + 4:decimal_index + 9]
+    # 将提取的小数部分转换为整数
+    decimal_value = int(decimal_part)
+    # 生成一个在-150到150范围的随机整数
+    random_offset = random.randint(-15000, 15000)
+    # 计算新的小数部分
+    new_decimal_value = decimal_value + random_offset
+    # 将新的小数部分转换为字符串，并确保它有3位
+    new_decimal_str = f"{new_decimal_value:05d}"
+    # 拼接回原浮点数
+    new_num_str = num_str[:decimal_index + 4] + new_decimal_str + num_str[decimal_index + 9:]
+    # 将新的字符串转换回浮点数
+    new_num = float(new_num_str)
+
+    return new_num
+
 def job():
     current_time = datetime.now()
     print("进入检索，当前时间为:", current_time)
     title = '班级魔法自动签到任务'  # 改成你要的标题内容
     url = 'http://k8n.cn/student/course/' + ClassID + '/punchs'
 
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Linux; Android 9; AKT-AK47 Build/USER-AK47; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36 XWEB/1160065 MMWEBSDK/20231202 MMWEBID/1136 MicroMessenger/8.0.47.2560(0x28002F35) WeChat/arm64 Weixin NetType/4G Language/zh_CN ABI/arm64',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/wxpic,image/tpg,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-        'X-Requested-With': 'com.tencent.mm',
-        'Referer': 'http://k8n.cn/student/course/' + ClassID,
-        'Accept-Encoding': 'gzip, deflate',
-        'Accept-Language': 'zh-CN,zh-SG;q=0.9,zh;q=0.8,en-SG;q=0.7,en-US;q=0.6,en;q=0.5',
-        'Cookie': extracted_string
-    }
+    for jobs in range(0,3):
+        nojobs = 0
+        # 多用户检测签到
+        for onlyCookie in MyCookie:
 
-    while True:
-        response = requests.get(url, headers=headers)
-        print("响应:", response)
+            # 使用正则表达式提取目标字符串
+            pattern = r'remember_student_59ba36addc2b2f9401580f014c7f58ea4e30989d=[^;]+'
+            result = re.search(pattern, onlyCookie)
 
-        # 创建 Beautiful Soup 对象解析 HTML
-        soup = BeautifulSoup(response.text, 'html.parser')
+            if result:
+                extracted_string = result.group(0)
+                print(extracted_string)
+            else:
+                print("未找到匹配的字符串,检查Cookie是否错误")
 
-        # 使用正则表达式从 HTML 文本中提取所有 punch_gps() 中的数字
-        pattern = re.compile(r'punch_gps\((\d+)\)')
-        matches = pattern.findall(response.text)
-        print("找到GPS定位签到:", matches)
-        pattern2 = re.compile(r'punchcard_(\d+)')
-        matches2 = pattern2.findall(response.text)
-        print("找到扫码签到:", matches2)
-        matches.extend(matches2)
-        if matches:
-            for match in matches:
-                print(match)
-                url1 = "http://k8n.cn/student/punchs/course/" + ClassID + "/" + match
-                payload = {
-                    'id': match,
-                    'lat': X,
-                    'lng': Y,
-                    'acc': ACC,  #未知，可能是高度
-                    'res': '',  #拍照签到
-                    'gps_addr': ''  #未知，抓取时该函数为空
-                }
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Linux; Android 9; AKT-AK47 Build/USER-AK47; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36 XWEB/1160065 MMWEBSDK/20231202 MMWEBID/1136 MicroMessenger/8.0.47.2560(0x28002F35) WeChat/arm64 Weixin NetType/4G Language/zh_CN ABI/arm64',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/wxpic,image/tpg,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+                'X-Requested-With': 'com.tencent.mm',
+                'Referer': 'http://k8n.cn/student/course/' + ClassID,
+                'Accept-Encoding': 'gzip, deflate',
+                'Accept-Language': 'zh-CN,zh-SG;q=0.9,zh;q=0.8,en-SG;q=0.7,en-US;q=0.6,en;q=0.5',
+                'Cookie': extracted_string
+            }
 
-                response = requests.post(url1, headers=headers, data=payload)
+            response = requests.get(url, headers=headers)
+            print("响应:", response)
 
-                if response.status_code == 200:
-                    print("请求成功")
-                    print("响应:", response)
+            # 创建 Beautiful Soup 对象解析 HTML
+            soup = BeautifulSoup(response.text, 'html.parser')
 
-                    # 解析响应的 HTML 内容
-                    soup_response = BeautifulSoup(response.text, 'html.parser')
-                    h1_tag = soup_response.find('h1')
+            # 使用正则表达式从 HTML 文本中提取所有 punch_gps() 中的数字
+            pattern = re.compile(r'punch_gps\((\d+)\)')
+            matches = pattern.findall(response.text)
+            print("找到GPS定位签到:", matches)
+            pattern2 = re.compile(r'punchcard_(\d+)')
+            matches2 = pattern2.findall(response.text)
+            print("找到扫码签到:", matches2)
+            matches.extend(matches2)
+            if matches:
+                for match in matches:
+                    print(match)
+                    url1 = "http://k8n.cn/student/punchs/course/" + ClassID + "/" + match
+                    payload = {
+                        'id': match,
+                        'lat': modify_decimal_part(X),
+                        'lng': modify_decimal_part(Y),
+                        'acc': ACC,  #未知，可能是高度
+                        'res': '',  #拍照签到
+                        'gps_addr': ''  #未知，抓取时该函数为空
+                    }
 
-                    if h1_tag:
-                        h1_text = h1_tag.text
-                        print(h1_text)
-                        # encoding:utf-8
-                        if token != "" and h1_text== "签到成功":
-                            url = 'http://www.pushplus.plus/send?token=' + token + '&title=' + title + '&content=' + h1_text  # 不使用请注释
-                            requests.get(url)  # 不使用请注释
-                        continue  # 返回到查找进行中的签到循环
+                    response = requests.post(url1, headers=headers, data=payload)
+
+                    if response.status_code == 200:
+                        print("请求成功")
+                        print("响应:", response)
+
+                        # 解析响应的 HTML 内容
+                        soup_response = BeautifulSoup(response.text, 'html.parser')
+                        h1_tag = soup_response.find('h1')
+
+                        if h1_tag:
+                            h1_text = h1_tag.text
+                            print(h1_text)
+                            # encoding:utf-8
+                            if token != "" and h1_text== "签到成功":
+                                url = 'http://www.pushplus.plus/send?token=' + token + '&title=' + title + '&content=' + h1_text  # 不使用请注释
+                                requests.get(url)  # 不使用请注释
+                            continue  # 返回到查找进行中的签到循环
+                        else:
+                            print("未找到 <h1> 标签，可能存在错误")
                     else:
-                        print("未找到 <h1> 标签，可能存在错误")
-                else:
-                    print("请求失败，状态码:", response.status_code)
-        else:
-            print("未找到在进行的签到")
-
-        # 可以设置一个间隔时间，避免过于频繁地请求
-        time.sleep(SearchTime)  # 暂停10秒后重新尝试
-
+                        print("请求失败，状态码:", response.status_code)
+                        nojobs+=1 # 记录失败次数
+            else:
+                print("未找到在进行的签到")
+            # 可以设置一个间隔时间，避免过于频繁地请求
+            # time.sleep(SearchTime)  # 暂停10秒后重新尝试
+            time.sleep(5) #暂停5秒后尝试下一个Cookie签到
+        if (nojobs > 0) :
+            jobs-=1 #检测到存在签到失败，延长重试规则
+            print("本次签到存在异常，异常次数%d，已自动延长重试次数"%nojobs)
+        time.sleep(300) #等待5分钟后进行重复签到，避免签到失败
 
 if (scheduletime != ""):
     print("等待设定时间" + scheduletime + "到达")
@@ -226,7 +270,6 @@ if (scheduletime != ""):
 
     while True:
         schedule.run_pending()
-        time.sleep(1)
+        time.sleep(30)
 else:
-
     job()
