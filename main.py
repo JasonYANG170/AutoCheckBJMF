@@ -121,7 +121,7 @@ with open('data.json', 'r') as file:
         scheduletime = json_data['scheduletime']  # int(input("请输入检索时长，建议>60s："))
     print("----------配置通知(可选)----------")
     if (json_data['pushplus'] == "123"):
-        token = input("请输入pushplus推送密钥,不需要请留空：")
+        token = input("请输入pushplus推送密钥,不需要请留空,或输入off永久关闭该提示：")
         if(token!=""):
         # 1. 读取JSON文件
         # JSON文件路径
@@ -206,7 +206,7 @@ def job():
     title = '班级魔法自动签到任务'  # 改成你要的标题内容
     url = 'http://k8n.cn/student/course/' + ClassID + '/punchs'
 
-    for jobs in range(0,3):
+    for jobs in range(0,2):
         nojobs = 0
         # 多用户检测签到
         for uid in range(0,len(MyCookie)):
@@ -220,7 +220,8 @@ def job():
 
             if result:
                 extracted_string = result.group(0)
-                print(extracted_string)
+                if debug:
+                    print(extracted_string)
             else:
                 print("未找到匹配的字符串,检查Cookie是否错误")
 
@@ -283,7 +284,7 @@ def job():
                             h1_text = div_tag.text
                             print(h1_text)
                             # encoding:utf-8
-                            if token != "" and h1_text== "签到成功":
+                            if token != "" and h1_text== "签到成功" and token != "off":
                                 url = 'http://www.pushplus.plus/send?token=' + token + '&title=' + title + '&content=' + h1_text  # 不使用请注释
                                 requests.get(url)  # 不使用请注释
                             continue  # 返回到查找进行中的签到循环
