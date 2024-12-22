@@ -71,7 +71,8 @@ with open('data.json', 'r') as file:
     print("Tip:90%的失败由Cookie变更导致")
     if (json_data['cookie'] == "123"):
         cookies = []
-        print("请输入你的Cookie，输入空行结束：")
+        print("请输入你的Cookie，输入空行结束，支持用户备注格式如下")
+        print("username=<备注>;remember....<魔方Cookie>")
         while True:
             cookie = input("Cookie: ")
             if not cookie:
@@ -210,11 +211,24 @@ def job():
         nojobs = 0
         # 多用户检测签到
         for uid in range(0,len(MyCookie)):
-
             onlyCookie = MyCookie[uid]
-            print("★★★★★ 用户UID：%d 开始签到 ★★★★★"%(uid+1))
 
-            # 使用正则表达式提取目标字符串
+            # 使用正则表达式提取目标字符串 - 用户备注
+            pattern = r'username=[^;]+'
+            result = re.search(pattern, onlyCookie)
+
+            if result:
+                username_string = result.group(0).split("=")[1]
+            else:
+                username_string = ""
+
+            # 用户信息显示
+            if username_string != "":
+                print("★★★★★ 用户UID：%d <%s> 开始签到 ★★★★★"%(uid+1,username_string))
+            else:
+                print("★★★★★ 用户UID：%d 开始签到 ★★★★★"%(uid+1))
+
+            # 使用正则表达式提取目标字符串 - Cookie
             pattern = r'remember_student_59ba36addc2b2f9401580f014c7f58ea4e30989d=[^;]+'
             result = re.search(pattern, onlyCookie)
 
