@@ -46,6 +46,7 @@ if not os.path.exists(file_path):
 # 读取外部 JSON 文件中的数据
 with open(file_path, 'r') as file:
     json_data = json.load(file)
+    debug = json_data["debug"]
 
     # 判断是否首次使用或解除配置锁定
     if not json_data['configLock']:
@@ -102,7 +103,6 @@ with open(file_path, 'r') as file:
         Cookies = json_data["cookie"]
         scheduletime = json_data["scheduletime"]
         pushtoken = json_data["pushplus"]
-        debug = json_data["debug"]
         print("配置已读取")
         if scheduletime!="":
             print("当前签到模式为：手动，即将开始签到")
@@ -275,7 +275,6 @@ def qiandao(theCookies):
             matches.extend(matches2)
             if matches:
                 for match in matches:
-                    print(match)
                     url1 = "http://k8n.cn/student/punchs/course/" + ClassID + "/" + match
                     newX = modify_decimal_part(X)
                     newY = modify_decimal_part(Y)
@@ -289,6 +288,7 @@ def qiandao(theCookies):
                     }
 
                     response = requests.post(url1, headers=headers, data=payload)
+                    print("签到请求已发送： 签到ID[%s] 签到定位[%s,%s] 签到海拔[%s]"%(match, newX, newY, ACC))
 
                     if response.status_code == 200:
                         print("请求成功，响应:", response)
