@@ -104,7 +104,7 @@ with open(file_path, 'r') as file:
         scheduletime = json_data["scheduletime"]
         pushtoken = json_data["pushplus"]
         print("配置已读取")
-        if scheduletime!="":
+        if scheduletime=="":
             print("当前签到模式为：手动，即将开始签到")
         else:
             print("当前签到模式为：自动，启动定时任务")
@@ -368,3 +368,4 @@ if (scheduletime != ""):
         time.sleep(1)
 else:
     job()
+    input("手动签到已结束，敲击回车关闭窗口☆~")
