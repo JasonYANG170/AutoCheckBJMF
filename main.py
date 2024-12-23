@@ -214,19 +214,22 @@ def qiandao(theCookies):
         result = re.search(pattern, onlyCookie)
 
         if result:
-            username_string = result.group(0).split("=")[1]
+            username_string = " <%s>"%result.group(0).split("=")[1]
         else:
             username_string = ""
 
-        # 用户信息显示
-        if username_string != "":
-            print("☆☆☆☆☆ 用户UID：%d <%s> 即将签到 ☆☆☆☆☆"%(uid+1,username_string),end="")
-            time.sleep(5) #暂停5秒后进行签到
-            print("\r★★★★★ 用户UID：%d <%s> 开始签到 ★★★★★"%(uid+1,username_string))
-        else:
-            print("☆☆☆☆☆ 用户UID：%d 即将签到 ☆☆☆☆☆"%(uid+1),end="")
-            time.sleep(5) #暂停5秒后进行签到
-            print("\r★★★★★ 用户UID：%d 开始签到 ★★★★★"%(uid+1))
+        # 用户信息显示与5秒冷却
+        print("☆☆☆☆☆ 用户UID：%d%s 即将签到 ☆☆☆☆☆"%(uid+1,username_string),end="")
+        time.sleep(1) #暂停5秒后进行签到
+        print("\r★☆☆☆☆ 用户UID：%d%s 即将签到 ☆☆☆☆★"%(uid+1,username_string),end="")
+        time.sleep(1)
+        print("\r★★☆☆☆ 用户UID：%d%s 即将签到 ☆☆☆★★"%(uid+1,username_string),end="")
+        time.sleep(1)
+        print("\r★★★☆☆ 用户UID：%d%s 即将签到 ☆☆★★★"%(uid+1,username_string),end="")
+        time.sleep(1)
+        print("\r★★★★☆ 用户UID：%d%s 即将签到 ☆★★★★"%(uid+1,username_string),end="")
+        time.sleep(1)
+        print("\r★★★★★ 用户UID：%d%s 开始签到 ★★★★★"%(uid+1,username_string))
 
         # 使用正则表达式提取目标字符串 - Cookie
         pattern = r'remember_student_59ba36addc2b2f9401580f014c7f58ea4e30989d=[^;]+'
