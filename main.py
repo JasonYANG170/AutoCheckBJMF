@@ -1,5 +1,4 @@
 import random
-
 import requests
 import re
 import time
@@ -9,16 +8,13 @@ import json
 import schedule
 from datetime import datetime
 
-
-
 # 获取当前目录
 current_directory = os.getcwd()
 file_name = "config.json"
 file_path = os.path.join(current_directory, file_name)
 
 print("----------提醒----------")
-print("原项目地址：https://github.com/JasonYANG170/AutoCheckBJMF")
-print("本项目地址：https://github.com/Yaklo/AutoCheckBJMF")
+print("项目地址：https://github.com/JasonYANG170/AutoCheckBJMF")
 print("请查看教程以获取Cookie和班级ID")
 print("config.json文件位置：", current_directory)
 
@@ -327,9 +323,6 @@ def qiandao(theCookies):
         else:
             print("登录状态异常，将本Cookie加入重试队列")
             errorCookie.append(onlyCookie)
-        # 可以设置一个间隔时间，避免过于频繁地请求
-        # time.sleep(SearchTime)  # 暂停10秒后重新尝试
-        # time.sleep(5) #暂停5秒后进行下一个Cookie签到
     return errorCookie
 def job():
     current_time = datetime.now()
@@ -352,9 +345,6 @@ def job():
     if scheduletime:
         print("☆本次签到结束，等待设定的时间%s到达☆"%scheduletime)
 
-
-
-# job()
 if (scheduletime != ""):
     print("☆等待设定时间" + scheduletime + "到达☆")
     # 设置定时任务，在每天的早上8点触发
