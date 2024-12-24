@@ -7,11 +7,22 @@ from bs4 import BeautifulSoup
 import json
 import schedule
 from datetime import datetime
+import logging
 
 # 获取当前目录
 current_directory = os.getcwd()
 file_name = "config.json"
 file_path = os.path.join(current_directory, file_name)
+
+# 创建 logger
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+# 创建文件处理器并设置编码为 UTF-8
+file_handler = logging.FileHandler('AutoCheckBJMF.log', encoding='utf-8')
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+# 将处理器添加到 logger
+logger.addHandler(file_handler)
 
 print("----------提醒----------")
 print("项目地址：https://github.com/JasonYANG170/AutoCheckBJMF")
@@ -106,8 +117,8 @@ with open(file_path, 'r') as file:
             print("当前签到模式为：自动，启动定时任务")
     print("----------信息----------")
     print("班级ID:" + ClassID)
-    print("经度:" + Y)
-    print("纬度:" + X)
+    print("经度:" + X)
+    print("纬度:" + Y)
     print("海拔:" + ACC)
     # print("检索间隔:" + str(SearchTime))
     print("Cookie数量:" + str(len(Cookies)))
@@ -143,7 +154,7 @@ print("★一切就绪，程序开始执行\\^o^/")
 # 随机经纬，用于多人签到定位偏移
 def modify_decimal_part(num):
     num = float(num)
-    print(num)
+    # print(num)
     # 将浮点数转换为字符串
     num_str = f"{num:.8f}"  # 确保有足够的小数位数
     # 找到小数点的位置
@@ -288,6 +299,7 @@ def qiandao(theCookies):
 
                     response = requests.post(url1, headers=headers, data=payload)
                     print("签到请求已发送： 签到ID[%s] 签到定位[%s,%s] 签到海拔[%s]"%(match, newX, newY, ACC))
+                    logging.info("用户UID[%d%s] | 签到请求已发送： 签到ID[%s] 签到定位[%s,%s] 签到海拔[%s]"%(uid+1, username_string, match, newX, newY, ACC))
 
                     if response.status_code == 200:
                         print("请求成功，响应:", response)
@@ -307,6 +319,7 @@ def qiandao(theCookies):
                         if div_tag:
                             h1_text = div_tag.text
                             print(h1_text)
+                            logging.info("用户UID[%d%s] | %s"%(uid+1, username_string, h1_text))
                             # encoding:utf-8
                             if pushtoken != "" and h1_text== "签到成功":
                                 url = 'http://www.pushplus.plus/send?token=' + pushtoken + '&title=' + "班级魔法自动签到任务" + '&content=' + h1_text  # 不使用请注释
@@ -314,14 +327,17 @@ def qiandao(theCookies):
                             continue  # 返回到查找进行中的签到循环
                         else:
                             print("未找到 <h1> 标签，可能存在错误")
+                            logging.info("用户UID[%d%s] | 未找到 <h1> 标签，可能存在错误或签到成功"%(uid+1, username_string))
                     else:
                         print("请求失败，状态码:", response.status_code)
+                        logging.error("用户UID[%d%s] | 请求失败，状态码: %d"%(uid+1, username_string, response.status_code))
                         print("将本Cookie加入重试队列")
                         errorCookie.append(onlyCookie)
             else:
                 print("未找到在进行的签到")
         else:
             print("登录状态异常，将本Cookie加入重试队列")
+            logging.error("用户UID[%d%s] | 登录状态异常"%(uid+1, username_string))
             errorCookie.append(onlyCookie)
     return errorCookie
 def job():
