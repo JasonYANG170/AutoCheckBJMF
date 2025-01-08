@@ -39,6 +39,9 @@
 ## 使用教程
 维基Wiki https://github.com/JasonYANG170/AutoCheckBJMF/wiki
 
+## 自行打包
+`pyinstaller main.spec`
+
 ## 喜欢这个项目，请为我点个Star ⭐ 
 
 [![Star History Chart](https://api.star-history.com/svg?repos=JasonYANG170/AutoCheckBJMF&type=Date)](https://star-history.com/#star-history/star-history&Date)
