@@ -386,7 +386,7 @@ def job():
     else:
         print("★本次签到圆满成功★")
 
-    print("■ □ ■ □ ■ □ 美丽的分割线 □ ■ □ ■ □ ■")
+    print("■ □ ■ □ ■ □ 我是分割线 □ ■ □ ■ □ ■")
 
     if scheduletime:
         print("☆本次签到结束，等待设定的时间%s到达☆\n"%scheduletime)
