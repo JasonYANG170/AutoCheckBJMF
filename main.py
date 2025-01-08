@@ -117,16 +117,6 @@ with open(file_path, 'r') as file:
     if debug:print("Debug:" + str(debug))
     print("---------------------")
 
-if debug:
-    # 创建 logger
-    logger = logging.getLogger()
-    logger.setLevel(logging.INFO)
-    # 创建文件处理器并设置编码为 UTF-8
-    file_handler = logging.FileHandler('AutoCheckBJMF.log', encoding='utf-8')
-    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-    file_handler.setFormatter(formatter)
-    # 将处理器添加到 logger
-    logger.addHandler(file_handler)
 def printLog(type, message):
     if debug:
         if type == "info":
@@ -140,6 +130,17 @@ def printLog(type, message):
         else:
             logger.info(message)
 
+if debug:
+    # 创建 logger
+    logger = logging.getLogger()
+    logger.setLevel(logging.INFO)
+    # 创建文件处理器并设置编码为 UTF-8
+    file_handler = logging.FileHandler('AutoCheckBJMF.log', encoding='utf-8')
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    file_handler.setFormatter(formatter)
+    # 将处理器添加到 logger
+    logger.addHandler(file_handler)
+    printLog("info", "已启动Debug")
 print("★一切就绪，程序开始执行\\^o^/")
 
 ### 请注意，下述两个自动任务功能未适配
