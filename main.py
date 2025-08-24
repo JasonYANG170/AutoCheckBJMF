@@ -181,6 +181,7 @@ def modify_decimal_part(num):
     random_offset = random.randint(-15000, 15000)
     # 计算新的小数部分
     new_decimal_value = decimal_value + random_offset
+    new_decimal_value = abs(new_decimal_value)
     # 将新的小数部分转换为字符串，并确保它有3位
     new_decimal_str = f"{new_decimal_value:05d}"
     # 拼接回原浮点数
