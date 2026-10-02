@@ -16,7 +16,7 @@ A Python-based GPS automatic check-in script for Banji Mofang.
 
 </div>
 
-It is strictly prohibited to use this program for illegal purposes. Please abide by regional regulations. If it violates the interests of the platform, please contact me to withdraw platform support.
+It is strictly prohibited to use this program for illegal purposes. Please comply with applicable laws and regulations. If it violates the interests of the platform, please contact me to withdraw platform support.
 ## Support platform
 **Windows、Mac、Linux**
 ## Supported sign-in modes
